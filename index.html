@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARC PLAY | IT Consultancy & Digital Services</title>
+    <meta name="description" content="ARC PLAY IT Consultancy - Web development, graphic design, and digital services in Coimbatore.">
+    <style>
+        :root {
+            --primary-color: #002244;
+            --secondary-color: #00509e;
+            --accent-color: #ffb703;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --bg-light: #f4f7f6;
+            --highlight-web: #00c3ff;
+            --highlight-design: #ff0055;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+        .btn { display: inline-block; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background 0.3s ease, transform 0.2s ease; }
+        .btn-primary { background-color: var(--accent-color); color: #000; }
+        .btn-primary:hover { background-color: #e0a000; transform: translateY(-2px); }
+        .btn-secondary { background-color: transparent; color: var(--text-light); border: 2px solid var(--text-light); margin-left: 10px; }
+        .btn-secondary:hover { background-color: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+        /* Scroll Reveal */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-50px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(50px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        /* Navigation */
+        nav { background-color: var(--primary-color); padding: 10px 0; color: var(--text-light); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+
+        .nav-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; transition: transform 0.3s ease; }
+        .nav-brand:hover { transform: scale(1.03); }
+        .nav-brand:hover .logo-img { filter: drop-shadow(0 0 12px rgba(255,183,3,0.8)); }
+
+        .logo-img { height: 58px; width: auto; display: block; border-radius: 8px; animation: logoGlow 3s ease-in-out infinite alternate; transition: filter 0.3s ease; }
+
+        @keyframes logoGlow {
+            0%   { filter: drop-shadow(0 0 3px rgba(255,183,3,0.3)); }
+            100% { filter: drop-shadow(0 0 10px rgba(0,195,255,0.5)); }
+        }
+
+        .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .brand-name { font-size: 22px; font-weight: 900; letter-spacing: 2px; background: linear-gradient(45deg, #ff0055, #ffb703, #00c3ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; text-transform: uppercase; }
+        .brand-tagline { font-size: 11px; font-weight: 500; letter-spacing: 2.5px; color: rgba(255,255,255,0.65); text-transform: uppercase; }
+        .brand-divider { width: 1.5px; height: 40px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3), transparent); }
+
+        .nav-links a { color: var(--text-light); text-decoration: none; margin-left: 20px; font-size: 16px; font-weight: 500; position: relative; padding-bottom: 4px; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent-color); transition: width 0.3s ease; }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-toggle { display: none; background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; }
+
+        /* Hero */
+        .hero { background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); color: var(--text-light); padding: 90px 0; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,195,255,0.15) 0%, transparent 70%); animation: floatBlob 8s ease-in-out infinite alternate; pointer-events: none; }
+        .hero::after { content: ''; position: absolute; bottom: -80px; left: -80px; width: 350px; height: 350px; background: radial-gradient(circle, rgba(255,0,85,0.12) 0%, transparent 70%); animation: floatBlob 10s ease-in-out infinite alternate-reverse; pointer-events: none; }
+
+        @keyframes floatBlob {
+            0%   { transform: translate(0,0) scale(1); }
+            100% { transform: translate(60px,40px) scale(1.2); }
+        }
+
+        .hero-container { display: flex; align-items: center; justify-content: space-between; gap: 50px; flex-wrap: wrap; position: relative; z-index: 1; }
+        .hero-video { flex: 1; min-width: 300px; order: 1; animation: heroFadeLeft 1s 0.3s ease both; }
+
+        @keyframes heroFadeLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-video video { width: 100%; border-radius: 12px; box-shadow: 0 15px 45px rgba(0,0,0,0.5); display: block; }
+        .hero-content { flex: 1; min-width: 300px; order: 2; }
+        .hero-content h1 { font-size: 52px; margin-bottom: 20px; line-height: 1.2; animation: heroFadeUp 0.9s ease both; }
+        .hero-content p { font-size: 20px; margin-bottom: 30px; opacity: 0.9; animation: heroFadeUp 0.9s 0.2s ease both; }
+        .hero-buttons { animation: heroFadeUp 0.9s 0.4s ease both; }
+
+        @keyframes heroFadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Services */
+        .services { padding: 90px 0; background-color: var(--bg-light); text-align: center; }
+        .section-title { font-size: 36px; margin-bottom: 15px; color: var(--primary-color); }
+        .section-subtitle { font-size: 18px; color: #666; margin-bottom: 50px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 30px; }
+
+        .card { background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.35s ease, box-shadow 0.35s ease; position: relative; overflow: hidden; }
+        .card:hover { transform: translateY(-12px); box-shadow: 0 14px 30px rgba(0,0,0,0.1); }
+        .card h3 { margin: 15px 0 10px; color: var(--primary-color); }
+        .card-icon { font-size: 44px; display: block; margin-bottom: 5px; }
+
+        .card-highlight { border-top: 4px solid transparent; }
+        .card-highlight::before { content: ''; position: absolute; top: 0; left: -80%; width: 60%; height: 100%; background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.45) 50%, transparent 100%); transform: skewX(-20deg); animation: shimmer 3.5s infinite; pointer-events: none; }
+
+        @keyframes shimmer { 0% { left: -80%; } 60% { left: 120%; } 100% { left: 120%; } }
+
+        .card-highlight .ribbon { position: absolute; top: 14px; right: -28px; padding: 4px 36px; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; transform: rotate(40deg); color: #fff; z-index: 2; }
+
+        .card-web { border-top-color: var(--highlight-web); box-shadow: 0 4px 20px rgba(0,195,255,0.15); animation: webPulseIdle 4s ease-in-out infinite; }
+        @keyframes webPulseIdle { 0%,100% { box-shadow: 0 4px 20px rgba(0,195,255,0.15); } 50% { box-shadow: 0 8px 32px rgba(0,195,255,0.35); } }
+        .card-web:hover { transform: translateY(-14px) scale(1.03); box-shadow: 0 18px 40px rgba(0,195,255,0.4); animation: none; }
+        .card-web h3 { background: linear-gradient(90deg, var(--primary-color), var(--highlight-web)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+        .card-web .card-icon { animation: webIconBounce 2.5s ease-in-out infinite; }
+        @keyframes webIconBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        .card-web .ribbon { background: linear-gradient(135deg, #00509e, #00c3ff); }
+
+        .card-design { border-top-color: var(--highlight-design); box-shadow: 0 4px 20px rgba(255,0,85,0.15); animation: designPulseIdle 4s 1s ease-in-out infinite; }
+        @keyframes designPulseIdle { 0%,100% { box-shadow: 0 4px 20px rgba(255,0,85,0.15); } 50% { box-shadow: 0 8px 32px rgba(255,0,85,0.35); } }
+        .card-design:hover { transform: translateY(-14px) scale(1.03); box-shadow: 0 18px 40px rgba(255,0,85,0.4); animation: none; }
+        .card-design h3 { background: linear-gradient(90deg, var(--highlight-design), #ffb703); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+        .card-design .card-icon { animation: designIconSpin 6s linear infinite; }
+        @keyframes designIconSpin { 0% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(10deg) scale(1.1); } 75% { transform: rotate(-10deg) scale(1.1); } 100% { transform: rotate(0deg) scale(1); } }
+        .card-design .ribbon { background: linear-gradient(135deg, #ff0055, #ffb703); }
+
+        .card-label { display: inline-block; margin-bottom: 8px; padding: 3px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+        .label-web    { background: rgba(0,195,255,0.12); color: #0077a8; border: 1px solid rgba(0,195,255,0.4); }
+        .label-design { background: rgba(255,0,85,0.1);   color: #cc0044; border: 1px solid rgba(255,0,85,0.35); }
+
+        .skill-bar-wrap { margin-top: 16px; text-align: left; }
+        .skill-bar-label { font-size: 12px; color: #888; margin-bottom: 4px; display: flex; justify-content: space-between; }
+        .skill-bar-bg { background: #e8e8e8; border-radius: 10px; height: 6px; overflow: hidden; }
+        .skill-bar-fill { height: 100%; border-radius: 10px; width: 0; transition: width 1.6s ease 0.5s; }
+        .fill-web    { background: linear-gradient(90deg, #00509e, #00c3ff); }
+        .fill-design { background: linear-gradient(90deg, #ff0055, #ffb703); }
+
+        /* ===================== AD BANNER — REDESIGNED ===================== */
+        .ad-banner {
+            background: linear-gradient(135deg, #060d1f 0%, #0a1628 50%, #060d1f 100%);
+            color: var(--text-light);
+            padding: 80px 0;
+            border-top: 4px solid var(--accent-color);
+            border-bottom: 4px solid var(--accent-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Rotating radial glow background */
+        .ad-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(0,195,255,0.07) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(255,183,3,0.07) 0%, transparent 50%);
+            animation: rotateBg 25s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotateBg {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        /* Two-column layout: text LEFT, image RIGHT */
+        .ad-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* LEFT: text content */
+        .ad-content {
+            flex: 1;
+            min-width: 280px;
+            text-align: left;
+        }
+
+        .badge {
+            background-color: #ff0055;
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%   { transform: scale(1);    box-shadow: 0 0 0 0 rgba(255,0,85,0.7); }
+            70%  { transform: scale(1.06); box-shadow: 0 0 0 10px rgba(255,0,85,0); }
+            100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(255,0,85,0); }
+        }
+
+        .ad-content h2 {
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .ad-content .highlight {
+            color: var(--accent-color);
+            animation: textFlicker 4s ease-in-out infinite;
+        }
+
+        @keyframes textFlicker {
+            0%,90%,100% { opacity: 1; text-shadow: 0 0 20px rgba(255,183,3,0.6); }
+            92%          { opacity: 0.6; text-shadow: none; }
+            95%          { opacity: 1; text-shadow: 0 0 20px rgba(255,183,3,0.6); }
+        }
+
+        .ad-content p {
+            font-size: 17px;
+            color: #cdd5e0;
+            margin-bottom: 28px;
+            max-width: 480px;
+            line-height: 1.7;
+        }
+
+        /* Feature pills row */
+        .ad-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .ad-pill {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(0,195,255,0.25);
+            border-radius: 30px;
+            padding: 7px 16px;
+            font-size: 13px;
+            color: #9ae8ff;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .ad-pill:hover {
+            background: rgba(0,195,255,0.12);
+            border-color: rgba(0,195,255,0.5);
+        }
+
+        .ad-pill span { font-size: 16px; }
+
+        /* Notify me input row */
+        .ad-notify {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .ad-notify input {
+            flex: 1;
+            min-width: 200px;
+            padding: 13px 18px;
+            border-radius: 8px;
+            border: 1.5px solid rgba(0,195,255,0.3);
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .ad-notify input::placeholder { color: rgba(255,255,255,0.35); }
+        .ad-notify input:focus { border-color: rgba(0,195,255,0.7); background: rgba(0,195,255,0.05); }
+
+        .ad-notify .btn-notify {
+            background: linear-gradient(90deg, #00c3ff, #0077ff);
+            color: #fff;
+            padding: 13px 26px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,195,255,0.3);
+            white-space: nowrap;
+        }
+
+        .ad-notify .btn-notify:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0,195,255,0.5);
+        }
+
+        /* RIGHT: Poster image */
+        .ad-image-wrap {
+            flex: 0 0 auto;
+            width: 300px;
+            position: relative;
+        }
+
+        .ad-image-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            background: radial-gradient(circle, rgba(0,195,255,0.18) 0%, transparent 70%);
+            border-radius: 24px;
+            animation: imgGlow 3s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes imgGlow {
+            0%   { opacity: 0.6; transform: scale(0.97); }
+            100% { opacity: 1;   transform: scale(1.03); }
+        }
+
+        .ad-poster {
+            width: 100%;
+            border-radius: 20px;
+            display: block;
+            box-shadow:
+                0 0 0 1px rgba(0,195,255,0.2),
+                0 20px 60px rgba(0,0,0,0.7),
+                0 0 40px rgba(0,195,255,0.15);
+            animation: posterFloat 5s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes posterFloat {
+            0%, 100% { transform: translateY(0px); }
+            50%       { transform: translateY(-12px); }
+        }
+
+        /* ===================== PROJECTS ===================== */
+        .projects { padding: 80px 0; background-color: #fff; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 30px; margin-top: 40px; }
+        .project-card { background: var(--bg-light); border-left: 5px solid var(--accent-color); padding: 30px; border-radius: 0 8px 8px 0; transition: background 0.3s ease, transform 0.3s ease; }
+        .project-card:hover { background: #e9ecef; transform: translateX(6px); }
+        .project-card h4 { font-size: 22px; color: var(--primary-color); margin-bottom: 10px; }
+
+        /* CTA */
+        .cta-section { background-color: var(--primary-color); color: var(--text-light); padding: 90px 0; text-align: center; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(0,80,158,0.5) 0%, transparent 70%); animation: ctaPulse 5s ease-in-out infinite; }
+        @keyframes ctaPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+        .cta-section h2, .cta-section p, .cta-section a { position: relative; z-index: 1; }
+        .cta-section h2 { font-size: 38px; margin-bottom: 20px; }
+
+        /* Footer */
+        footer { background-color: #111; color: #aaa; text-align: center; padding: 36px 0 24px; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 16px; }
+        .footer-logo { height: 52px; width: auto; border-radius: 8px; opacity: 0.9; transition: opacity 0.3s ease, filter 0.3s ease; }
+        .footer-logo:hover { opacity: 1; filter: drop-shadow(0 0 8px rgba(255,183,3,0.6)); }
+        .footer-brand-text { display: flex; flex-direction: column; text-align: left; line-height: 1.3; }
+        .footer-brand-name { font-size: 18px; font-weight: 900; letter-spacing: 2px; background: linear-gradient(45deg, #ff0055, #ffb703, #00c3ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; text-transform: uppercase; }
+        .footer-brand-tagline { font-size: 10px; letter-spacing: 2px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+        .footer-divider { width: 1.5px; height: 36px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.25), transparent); }
+        footer p { font-size: 13px; color: #555; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .ad-inner { flex-direction: column; text-align: center; }
+            .ad-content { text-align: center; }
+            .ad-content p { max-width: 100%; }
+            .ad-features { justify-content: center; }
+            .ad-notify { justify-content: center; }
+            .ad-image-wrap { width: 260px; margin: 0 auto; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links { display: none; flex-direction: column; width: 100%; background: var(--primary-color); padding: 10px 0; position: absolute; top: 80px; left: 0; }
+            .nav-links.open { display: flex; }
+            .nav-links a { margin: 10px 20px; }
+            .hero-content h1 { font-size: 34px; }
+            .btn-secondary { margin-left: 0; margin-top: 15px; display: block; text-align: center; }
+            .hero-container { flex-direction: column; }
+            .hero-video { order: 1; }
+            .hero-content { order: 2; }
+            .ad-content h2 { font-size: 34px; }
+            .logo-img { height: 46px; }
+            .brand-name { font-size: 17px; }
+            .brand-tagline { font-size: 9px; letter-spacing: 1.5px; }
+        }
+
+        @media (max-width: 480px) {
+            .brand-divider, .footer-divider { display: none; }
+            .brand-tagline { display: none; }
+            .ad-image-wrap { width: 220px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="nav-brand">
+                <img src="Main Logo.png" alt="ARC PLAY Logo" class="logo-img">
+                <div class="brand-divider"></div>
+                <div class="brand-text">
+                    <span class="brand-name">ARC PLAY</span>
+                    <span class="brand-tagline">IT Services &amp; Consultancy</span>
+                </div>
+            </a>
+            <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu">&#9776;</button>
+            <div class="nav-links" id="navLinks">
+                <a href="#services">Services</a>
+                <a href="#projects">Work</a>
+                <a href="mailto:arcplaysales@gmail.com" class="btn btn-primary" style="margin-left:20px; padding:8px 16px;">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="container hero-container">
+            <div class="hero-video">
+                <video controls autoplay muted loop preload="auto">
+                    <source src="ARC FINAL SPLASH.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="hero-content">
+                <h1>Transform Your Vision Into Reality.</h1>
+                <p>We deliver unparalleled efficiency, creative design, and next-generation IT solutions designed to scale your business and outpace the competition.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Let's Talk Strategy</a>
+                    <a href="#services" class="btn btn-secondary">Explore Our Services</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SERVICES -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title reveal">Our Expertise</h2>
+            <p class="section-subtitle reveal delay-1">Comprehensive solutions for modern businesses.</p>
+            <div class="grid-3">
+
+                <div class="card card-highlight card-web reveal delay-1">
+                    <div class="ribbon">Top Pick</div>
+                    <span class="card-label label-web">Core Service</span>
+                    <span class="card-icon">💻</span>
+                    <h3>Web Development</h3>
+                    <p>High-performance websites ranging from lightning-fast static pages to complex enterprise portals.</p>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Expertise</span><span>98%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill fill-web" data-width="98"></div></div>
+                        <div class="skill-bar-label" style="margin-top:8px"><span>Client Satisfaction</span><span>100%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill fill-web" data-width="100"></div></div>
+                    </div>
+                </div>
+
+                <div class="card card-highlight card-design reveal delay-2">
+                    <div class="ribbon">Creative</div>
+                    <span class="card-label label-design">Core Service</span>
+                    <span class="card-icon">🎨</span>
+                    <h3>Graphic Designing</h3>
+                    <p>Creative design solutions, brand identities, and stunning visual assets that capture your unique voice.</p>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Creativity</span><span>95%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill fill-design" data-width="95"></div></div>
+                        <div class="skill-bar-label" style="margin-top:8px"><span>Brand Impact</span><span>92%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill fill-design" data-width="92"></div></div>
+                    </div>
+                </div>
+
+                <div class="card reveal delay-3">
+                    <span class="card-icon">📈</span>
+                    <h3>IT Consulting</h3>
+                    <p>Strategic digital transformation roadmaps to modernize legacy systems and future-proof your tech stack.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== AD BANNER — invoicemakes ===================== -->
+    <section class="ad-banner">
+        <div class="container">
+            <div class="ad-inner">
+
+                <!-- LEFT: Text + CTA -->
+                <div class="ad-content reveal-left">
+                    <span class="badge">Coming Soon</span>
+                    <h2><span class="highlight">invoicemakes</span></h2>
+                    <p>Get ready for the next-generation invoice billing software. Effortless invoicing, simplified financial management, and ultimate scalability — arriving soon.</p>
+
+                    <!-- Feature Pills -->
+                    <div class="ad-features">
+                        <div class="ad-pill"><span>🎨</span> Custom Templates</div>
+                        <div class="ad-pill"><span>⚡</span> Instant Payments</div>
+                        <div class="ad-pill"><span>🔒</span> Secure Cloud</div>
+                    </div>
+
+                    <!-- Notify Me -->
+                    <!-- <div class="ad-notify">
+                        <input type="email" placeholder="Enter your email for early access…" id="notifyEmail">
+                        <a href="#" class="btn-notify" onclick="handleNotify(event)">Notify Me</a>
+                    </div> -->
+                </div>
+
+                <!-- RIGHT: Poster Image -->
+                <div class="ad-image-wrap reveal-right">
+                    <img
+                        src="Gemini_Generated_Image_1mnsn81mnsn81mns.png"
+                        alt="invoicemakes — Effortless Invoicing App Preview"
+                        class="ad-poster"
+                    >
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title reveal-left">Featured Client Work</h2>
+            <p class="reveal-left delay-1" style="font-size:18px; color:#666; margin-bottom:30px;">A glimpse into the digital solutions we deliver across industries.</p>
+            <div class="project-grid">
+                <div class="project-card reveal delay-1">
+                    <h4>Web Development</h4>
+                    <p style="color:#555; font-size:13px; margin-bottom:10px; text-transform:uppercase; font-weight:bold;">Real Estate & Corporate</p>
+                    <p><strong>Project: ARS Builderss & Promoters</strong></p>
+                    <p style="margin-top:10px;">Delivered a clean, fast-loading, and responsive static website tailored for the real estate sector, providing a highly optimized platform for promoters to confidently showcase properties.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <h2 class="reveal">Ready to Accelerate Your Business?</h2>
+            <p class="reveal delay-1" style="margin-bottom:30px; font-size:20px;">Stop letting outdated tech hold you back. Partner with ARC PLAY today.</p>
+            <a href="mailto:arcplaysales@gmail.com" class="btn btn-primary reveal delay-2" style="font-size:20px; padding:16px 32px;">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+   
+            <p>&copy; <span id="year"></span> ARC PLAY IT Services &amp; Consultancy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('open');
+            });
+        });
+
+        function handleNotify(e) {
+            e.preventDefault();
+            const input = document.getElementById('notifyEmail');
+            const email = input.value.trim();
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                input.style.borderColor = 'rgba(255,0,85,0.7)';
+                input.placeholder = 'Please enter a valid email';
+                return;
+            }
+            input.style.borderColor = 'rgba(0,195,255,0.7)';
+            input.value = '';
+            input.placeholder = '✓ You\'re on the list!';
+            setTimeout(() => { input.placeholder = 'Enter your email for early access…'; }, 3000);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                        bar.style.width = bar.dataset.width + '%';
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+        window.addEventListener('scroll', () => {
+            document.querySelector('nav').style.boxShadow = window.scrollY > 10
+                ? '0 4px 24px rgba(0,0,0,0.4)'
+                : '0 2px 20px rgba(0,0,0,0.3)';
+        });
+    </script>
+</body>
+</html>
