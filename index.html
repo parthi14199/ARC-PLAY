@@ -78,16 +78,17 @@
         .hero-content { flex: 1; min-width: 300px; order: 2; }
         .hero-content h1 { font-size: 52px; margin-bottom: 20px; line-height: 1.2; animation: heroFadeUp 0.9s ease both; }
         .hero-content p { font-size: 20px; margin-bottom: 30px; opacity: 0.9; animation: heroFadeUp 0.9s 0.2s ease both; }
+        .hero-content .highlight-text { color: var(--accent-color); font-weight: bold; }
         .hero-buttons { animation: heroFadeUp 0.9s 0.4s ease both; }
         @keyframes heroFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* ===================== NEW: STATS SECTION ===================== */
+        /* STATS SECTION */
         .stats-section { background: linear-gradient(90deg, #00152b, var(--primary-color)); padding: 50px 0; border-bottom: 3px solid var(--accent-color); position: relative; z-index: 2; }
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
         .stat-item h3 { font-size: 48px; font-weight: 900; color: var(--accent-color); margin-bottom: 5px; line-height: 1; }
         .stat-item p { color: #9ae8ff; font-size: 15px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
 
-        /* ===================== NEW: ABOUT US ===================== */
+        /* ABOUT US */
         .about-section { padding: 90px 0; background-color: #fff; }
         .about-wrapper { display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
         .about-content { flex: 1; min-width: 300px; }
@@ -188,7 +189,7 @@
         .project-card:hover { transform: translateX(6px); }
         .project-card h4 { font-size: 22px; color: var(--primary-color); margin-bottom: 10px; }
 
-        /* ===================== NEW: FAQ SECTION ===================== */
+        /* FAQ SECTION */
         .faq-section { padding: 90px 0; background-color: #fff; }
         .faq-container { max-width: 800px; margin: 0 auto; }
         details { background: var(--bg-light); margin-bottom: 15px; border-radius: 8px; border-left: 4px solid var(--accent-color); overflow: hidden; transition: background 0.3s; }
@@ -294,7 +295,7 @@
             </div>
             <div class="hero-content">
                 <h1>Transform Your Vision Into Reality.</h1>
-                <p>We deliver unparalleled efficiency, creative design, and next-generation IT solutions designed to scale your business and outpace the competition.</p>
+                <p>We deliver unparalleled efficiency, creative design, and next-generation IT solutions designed to scale your business. <br><br><span class="highlight-text">Premium projects done at an affordable price.</span></p>
                 <div class="hero-buttons">
                     <a href="#enquiry" class="btn btn-primary">Start a Project</a>
                     <a href="#services" class="btn btn-secondary">Explore Our Services</a>
@@ -332,7 +333,7 @@
                 <div class="about-content reveal-left">
                     <h2>Your Trusted Digital Growth Partner</h2>
                     <p>At ARC PLAY, we believe that your digital presence should be your strongest asset, not a technical headache. We are a passionate team of developers, designers, and strategists dedicated to turning complex problems into elegant digital solutions.</p>
-                    <p>Whether you need a high-converting website, an eye-catching brand identity, or a complete digital overhaul, we combine creativity with cutting-edge technology to deliver results that actually impact your bottom line.</p>
+                    <p>Whether you need a high-converting website, an eye-catching brand identity, or a complete digital overhaul, we combine creativity with cutting-edge technology to deliver results that actually impact your bottom line. <strong>All of our projects are done at an affordable price, without ever compromising on premium quality.</strong></p>
                     <a href="#enquiry" class="btn btn-primary" style="margin-top: 10px;">Let's Build Together</a>
                 </div>
                 <div class="about-visual reveal-right">
@@ -490,6 +491,12 @@
             
             <div class="reveal delay-2">
                 <details>
+                    <summary>How much will my project cost?</summary>
+                    <div class="faq-content">
+                        <strong>We are proud to offer high-quality projects done at an affordable price.</strong> Because every business has unique needs, we don't use strict "one-size-fits-all" pricing. Instead, we customize our quotes based on the scope and features of your project to ensure you get the best value for your budget. Reach out to us via the Enquiry form for a free, customized quote!
+                    </div>
+                </details>
+                <details>
                     <summary>How long does it take to build a website?</summary>
                     <div class="faq-content">
                         The timeline depends entirely on the complexity of the project. A standard business landing page can be completed in 1-2 weeks, while a more complex e-commerce or custom web application may take 4-8 weeks. We will provide a precise timeline during our initial consultation.
@@ -499,12 +506,6 @@
                     <summary>Do you provide ongoing support after the project is launched?</summary>
                     <div class="faq-content">
                         Absolutely! We don't just build and disappear. We offer ongoing maintenance, security updates, and technical support packages to ensure your digital assets remain fast, secure, and up-to-date long after launch.
-                    </div>
-                </details>
-                <details>
-                    <summary>How much will my project cost?</summary>
-                    <div class="faq-content">
-                        Because every business has unique needs, we don't offer "one-size-fits-all" pricing. We price our projects based on the scope, features, and specific requirements of your business. Reach out to us via the Enquiry form for a free, customized quote!
                     </div>
                 </details>
                 <details>
