@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>ARC PLAY | IT Consultancy & Digital Services</title>
     <meta name="description" content="ARC PLAY IT Consultancy - Web development, graphic design, and digital services in Coimbatore.">
-    <link rel="icon" type="image/png" href="Main Logo.png">
     
     <style>
         :root {
@@ -19,9 +18,26 @@
             --highlight-design: #ff0055;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        html { scroll-behavior: smooth; }
-        body { color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
+
+        /* Prevent mobile viewport shifting caused by transforms */
+        html, body { 
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden; 
+            scroll-behavior: smooth; 
+        }
+
+        body { 
+            color: var(--text-dark); 
+            line-height: 1.6; 
+            position: relative;
+        }
 
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
 
@@ -34,9 +50,9 @@
         /* Scroll Reveal */
         .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
-        .reveal-left { opacity: 0; transform: translateX(-50px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .reveal-left.visible { opacity: 1; transform: translateX(0); }
-        .reveal-right { opacity: 0; transform: translateX(50px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .reveal-right.visible { opacity: 1; transform: translateX(0); }
         .delay-1 { transition-delay: 0.1s; }
         .delay-2 { transition-delay: 0.2s; }
@@ -76,7 +92,7 @@
         .hero-container { display: flex; align-items: center; justify-content: space-between; gap: 50px; flex-wrap: wrap; position: relative; z-index: 1; }
         .hero-video { flex: 1; min-width: 300px; order: 1; animation: heroFadeLeft 1s 0.3s ease both; }
         @keyframes heroFadeLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
-        .hero-video video { width: 100%; border-radius: 12px; box-shadow: 0 15px 45px rgba(0,0,0,0.5); display: block; object-fit: cover; }
+        .hero-video video { width: 100%; border-radius: 12px; box-shadow: 0 15px 45px rgba(0,0,0,0.5); display: block; }
         .hero-content { flex: 1; min-width: 300px; order: 2; }
         .hero-content h1 { font-size: 52px; margin-bottom: 20px; line-height: 1.2; animation: heroFadeUp 0.9s ease both; }
         .hero-content p { font-size: 20px; margin-bottom: 30px; opacity: 0.9; animation: heroFadeUp 0.9s 0.2s ease both; }
@@ -84,13 +100,13 @@
         .hero-buttons { animation: heroFadeUp 0.9s 0.4s ease both; }
         @keyframes heroFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Stats Section */
+        /* Stats */
         .stats-section { background: linear-gradient(90deg, #00152b, var(--primary-color)); padding: 50px 0; border-bottom: 3px solid var(--accent-color); position: relative; z-index: 2; }
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
         .stat-item h3 { font-size: 48px; font-weight: 900; color: var(--accent-color); margin-bottom: 5px; line-height: 1; }
         .stat-item p { color: #9ae8ff; font-size: 15px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
 
-        /* About Section */
+        /* About */
         .about-section { padding: 90px 0; background-color: #fff; }
         .about-wrapper { display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
         .about-content { flex: 1; min-width: 300px; }
@@ -101,7 +117,7 @@
         .about-img-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); padding: 40px; border-radius: 12px; text-align: center; color: #fff; position: relative; z-index: 1; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
         .about-img-box h3 { font-size: 28px; margin-bottom: 10px; color: var(--accent-color); }
 
-        /* Services Section */
+        /* Services */
         .services { padding: 90px 0; background-color: var(--bg-light); text-align: center; }
         .section-title { font-size: 36px; margin-bottom: 15px; color: var(--primary-color); }
         .section-subtitle { font-size: 18px; color: #666; margin-bottom: 50px; }
@@ -143,7 +159,7 @@
         .fill-web { background: linear-gradient(90deg, #00509e, #00c3ff); }
         .fill-design { background: linear-gradient(90deg, #ff0055, #ffb703); }
 
-        /* Why Choose Us */
+        /* Why Us */
         .why-us { padding: 90px 0; background-color: #fff; text-align: center; }
         .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-top: 50px; }
         .feature-box { padding: 20px; text-align: center; }
@@ -163,21 +179,26 @@
         .process-step h4 { font-size: 22px; margin: 15px 0 10px; color: #fff; }
         .process-step p { font-size: 14px; color: #ccc; }
 
-        /* Banner */
+        /* Ad Banner */
         .ad-banner { background: linear-gradient(135deg, #060d1f 0%, #0a1628 50%, #060d1f 100%); color: var(--text-light); padding: 80px 0; border-top: 4px solid var(--accent-color); border-bottom: 4px solid var(--accent-color); position: relative; overflow: hidden; }
         .ad-banner::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 50%, rgba(0,195,255,0.07) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(255,183,3,0.07) 0%, transparent 50%); animation: rotateBg 25s linear infinite; pointer-events: none; }
         @keyframes rotateBg { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .ad-inner { display: flex; align-items: center; justify-content: space-between; gap: 60px; flex-wrap: wrap; position: relative; z-index: 1; }
         .ad-content { flex: 1; min-width: 280px; text-align: left; }
-        .badge { background-color: #ff0055; color: #fff; padding: 6px 16px; border-radius: 30px; font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 20px; }
+        .badge { background-color: #ff0055; color: #fff; padding: 6px 16px; border-radius: 30px; font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 20px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,0,85,0.7); } 70% { transform: scale(1.06); box-shadow: 0 0 0 10px rgba(255,0,85,0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,0,85,0); } }
         .ad-content h2 { font-size: 48px; font-weight: 900; letter-spacing: 3px; margin-bottom: 16px; line-height: 1.1; }
-        .ad-content .highlight { color: var(--accent-color); }
+        .ad-content .highlight { color: var(--accent-color); animation: textFlicker 4s ease-in-out infinite; }
+        @keyframes textFlicker { 0%,90%,100% { opacity: 1; text-shadow: 0 0 20px rgba(255,183,3,0.6); } 92% { opacity: 0.6; text-shadow: none; } 95% { opacity: 1; text-shadow: 0 0 20px rgba(255,183,3,0.6); } }
         .ad-content p { font-size: 17px; color: #cdd5e0; margin-bottom: 28px; max-width: 480px; line-height: 1.7; }
         .ad-features { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
         .ad-pill { display: flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.06); border: 1px solid rgba(0,195,255,0.25); border-radius: 30px; padding: 7px 16px; font-size: 13px; color: #9ae8ff; font-weight: 600; letter-spacing: 0.5px; transition: background 0.3s ease, border-color 0.3s ease; }
         .ad-pill:hover { background: rgba(0,195,255,0.12); border-color: rgba(0,195,255,0.5); }
         .ad-image-wrap { flex: 0 0 auto; width: 300px; position: relative; }
-        .ad-poster { width: 100%; border-radius: 20px; display: block; box-shadow: 0 0 0 1px rgba(0,195,255,0.2), 0 20px 60px rgba(0,0,0,0.7); position: relative; z-index: 1; }
+        .ad-image-wrap::before { content: ''; position: absolute; inset: -20px; background: radial-gradient(circle, rgba(0,195,255,0.18) 0%, transparent 70%); border-radius: 24px; animation: imgGlow 3s ease-in-out infinite alternate; pointer-events: none; }
+        @keyframes imgGlow { 0% { opacity: 0.6; transform: scale(0.97); } 100% { opacity: 1; transform: scale(1.03); } }
+        .ad-poster { width: 100%; border-radius: 20px; display: block; box-shadow: 0 0 0 1px rgba(0,195,255,0.2), 0 20px 60px rgba(0,0,0,0.7), 0 0 40px rgba(0,195,255,0.15); animation: posterFloat 5s ease-in-out infinite; position: relative; z-index: 1; }
+        @keyframes posterFloat { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
 
         /* Projects */
         .projects { padding: 80px 0; background-color: var(--bg-light); }
@@ -211,78 +232,74 @@
 
         /* CTA */
         .cta-section { background-color: var(--primary-color); color: var(--text-light); padding: 90px 0; text-align: center; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(0,80,158,0.5) 0%, transparent 70%); animation: ctaPulse 5s ease-in-out infinite; }
+        @keyframes ctaPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.15); } }
         .cta-section h2, .cta-section p, .cta-section a { position: relative; z-index: 1; }
         .cta-section h2 { font-size: 38px; margin-bottom: 20px; }
 
         /* Footer */
         footer { background-color: #111; color: #aaa; text-align: center; padding: 36px 0 24px; }
+        .footer-logo:hover { opacity: 1; filter: drop-shadow(0 0 8px rgba(255,183,3,0.6)); }
 
-        /* ==========================================
-           FLOATING BUTTONS CONTAINER (Mobile-Stable)
-           ========================================== */
+        /* ============================================================
+           FIXED FLOATING BUTTONS CONTAINER (Mobile-Optimized & Stable)
+           ============================================================ */
         .floating-buttons-container {
             position: fixed;
-            bottom: max(20px, env(safe-area-inset-bottom));
-            right: 20px;
+            /* Support iOS safe area / bottom bars seamlessly */
+            bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+            right: calc(20px + env(safe-area-inset-right, 0px));
             display: flex;
             flex-direction: column;
             gap: 12px;
-            z-index: 9999;
+            z-index: 99999;
             align-items: flex-end;
-            pointer-events: none; /* Prevents unclickable touch dead-zones */
+            pointer-events: none; /* Let accidental taps beside buttons pass through */
         }
 
         .floating-enquiry-btn,
-        .whatsapp-btn { 
-            pointer-events: auto; /* Restores button interaction */
-            white-space: nowrap; /* Prevents words from splitting */
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 50px;
-            display: inline-flex;
+        .whatsapp-btn {
+            pointer-events: auto; /* Clickable */
+            display: inline-flex; /* Fixes inline geometry jump */
             align-items: center;
             justify-content: center;
-            line-height: 1;
+            white-space: nowrap; /* Prevents text split/wrap */
+            text-decoration: none;
+            box-sizing: border-box;
+            user-select: none;
             -webkit-tap-highlight-color: transparent;
+            font-family: inherit;
         }
 
         .floating-enquiry-btn { 
             background: linear-gradient(45deg, #ff0055, #ffb703); 
             color: #ffffff; 
-            padding: 13px 24px; 
+            padding: 12px 22px; 
+            border-radius: 50px; 
             font-size: 15px; 
-            box-shadow: 0 4px 15px rgba(255, 0, 85, 0.35); 
-            transition: transform 0.2s ease, box-shadow 0.2s ease; 
+            font-weight: 700; 
+            box-shadow: 0 4px 15px rgba(255, 0, 85, 0.4); 
+            animation: glowBtn 2s infinite alternate; 
+            transition: transform 0.25s ease; 
         }
-        .floating-enquiry-btn:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 6px 20px rgba(255, 0, 85, 0.5); 
-            color: #ffffff; 
-        }
+        .floating-enquiry-btn:hover { transform: scale(1.06); color: #fff; }
+        @keyframes glowBtn { 0% { box-shadow: 0 0 8px rgba(255, 0, 85, 0.4); } 100% { box-shadow: 0 0 20px rgba(255, 183, 3, 0.8), 0 0 10px rgba(255, 0, 85, 0.6); } }
 
         .whatsapp-btn { 
             background-color: #25D366; 
             color: #ffffff; 
-            padding: 13px 24px; 
+            padding: 12px 22px; 
+            border-radius: 50px; 
             font-size: 15px; 
+            font-weight: 700; 
             gap: 8px; 
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35); 
-            transition: transform 0.2s ease, box-shadow 0.2s ease; 
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); 
+            transition: transform 0.25s ease, box-shadow 0.25s ease; 
         }
-        .whatsapp-btn:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); 
-            color: #ffffff; 
-        }
-        
-        .whatsapp-btn svg { 
-            width: 20px; 
-            height: 20px; 
-            display: block; 
-            flex-shrink: 0; 
-        }
+        .whatsapp-btn:hover { transform: scale(1.06); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6); color: #fff; }
+        .whatsapp-btn svg { width: 20px; height: 20px; display: block; flex-shrink: 0; fill: currentColor; }
 
-        /* Responsive */
+        /* Responsive Breakpoints */
         @media (max-width: 900px) {
             .ad-inner { flex-direction: column; text-align: center; }
             .ad-content { text-align: center; }
@@ -294,9 +311,9 @@
 
         @media (max-width: 768px) {
             .nav-toggle { display: block; }
-            .nav-links { display: none; flex-direction: column; width: 100%; background: var(--primary-color); padding: 15px 0; position: absolute; top: 78px; left: 0; box-shadow: 0 8px 16px rgba(0,0,0,0.3); }
+            .nav-links { display: none; flex-direction: column; width: 100%; background: var(--primary-color); padding: 10px 0; position: absolute; top: 80px; left: 0; }
             .nav-links.open { display: flex; }
-            .nav-links a { margin: 10px 24px; }
+            .nav-links a { margin: 10px 20px; }
             .hero-content h1 { font-size: 34px; }
             .btn-secondary { margin-left: 0; margin-top: 15px; display: block; text-align: center; }
             .hero-container { flex-direction: column; }
@@ -309,24 +326,23 @@
             .stat-item h3 { font-size: 36px; }
         }
 
+        /* Mobile specific adjustments: neatly positioned & aligned */
         @media (max-width: 480px) {
-            .brand-divider, .brand-tagline { display: none; }
+            .brand-divider, .footer-divider { display: none; }
+            .brand-tagline { display: none; }
             .ad-image-wrap { width: 220px; }
             
             .floating-buttons-container {
-                bottom: max(16px, env(safe-area-inset-bottom));
-                right: 14px;
+                bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+                right: calc(14px + env(safe-area-inset-right, 0px));
                 gap: 10px;
             }
             .floating-enquiry-btn,
             .whatsapp-btn { 
-                padding: 11px 18px; 
+                padding: 10px 18px; 
                 font-size: 13px; 
             }
-            .whatsapp-btn svg { 
-                width: 17px; 
-                height: 17px; 
-            }
+            .whatsapp-btn svg { width: 16px; height: 16px; }
         }
     </style>
 </head>
@@ -344,9 +360,9 @@
             </a>
             <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu">&#9776;</button>
             <div class="nav-links" id="navLinks">
-                <a href="#about" onclick="closeNav()">About</a>
-                <a href="#services" onclick="closeNav()">Services</a>
-                <a href="#projects" onclick="closeNav()">Work</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#projects">Work</a>
                 <a href="mailto:arcplaysales@gmail.com" class="btn btn-primary" style="margin-left:20px; padding:8px 16px;">Contact Us</a>
             </div>
         </div>
@@ -406,7 +422,7 @@
                 <div class="about-visual reveal-right">
                     <div class="about-img-box">
                         <h3>ARC PLAY</h3>
-                        <p style="font-size: 18px;">Innovating the future of IT Services & Digital Consultancy.</p>
+                        <p style="font-size: 18px;">Innovating the future of IT Services &amp; Digital Consultancy.</p>
                         <p style="margin-top: 20px; font-weight: bold; color: #9ae8ff;">Based in Coimbatore, India.</p>
                     </div>
                 </div>
@@ -543,8 +559,8 @@
             <div class="project-grid">
                 <div class="project-card reveal delay-1">
                     <h4>Web Development</h4>
-                    <p style="color:#555; font-size:13px; margin-bottom:10px; text-transform:uppercase; font-weight:bold;">Real Estate & Corporate</p>
-                    <p><strong>Project: ARS Builderss & Promoters</strong></p>
+                    <p style="color:#555; font-size:13px; margin-bottom:10px; text-transform:uppercase; font-weight:bold;">Real Estate &amp; Corporate</p>
+                    <p><strong>Project: ARS Builderss &amp; Promoters</strong></p>
                     <p style="margin-top:10px;">Delivered a clean, fast-loading, and responsive static website tailored for the real estate sector, providing a highly optimized platform for promoters to confidently showcase properties.</p>
                 </div>
             </div>
@@ -633,12 +649,11 @@
         </div>
     </footer>
 
-    <!-- STABLE MOBILE FLOATING BUTTONS -->
+    <!-- STABLE FLOATING BUTTONS -->
     <div class="floating-buttons-container">
         <a href="#enquiry" class="floating-enquiry-btn">Enquiry ✨</a>
-
         <a href="https://wa.me/919150832427" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
             </svg>
             WhatsApp
@@ -650,10 +665,6 @@
 
         function toggleNav() {
             document.getElementById('navLinks').classList.toggle('open');
-        }
-
-        function closeNav() {
-            document.getElementById('navLinks').classList.remove('open');
         }
 
         const observer = new IntersectionObserver((entries) => {
@@ -676,16 +687,12 @@
                 : '0 2px 20px rgba(0,0,0,0.3)';
         });
 
-        // ----------------------------------------------------
-        // Form Submission to Google Apps Script
-        // ----------------------------------------------------
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxtGAKFNSnZKnNx1SZilRDGxxpwdUI9EFPqsbEIQKApMKfBYJtYzR7EYj-MOJXj8Myy/exec'; 
         const form = document.getElementById('enquiryForm');
         const submitBtn = document.getElementById('submitBtn');
 
         form.addEventListener('submit', e => {
             e.preventDefault(); 
-            
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
 
@@ -696,12 +703,12 @@
             })
             .then(() => {
                 alert('Thank you! Your enquiry has been sent successfully. We will get back to you soon.');
-                form.reset();
+                form.reset(); 
                 submitBtn.textContent = 'Submit Enquiry';
                 submitBtn.disabled = false;
             })
             .catch(error => {
-                alert('Network error. Please reach out to us via WhatsApp.');
+                alert('Network error. Please reach out to us directly via WhatsApp.');
                 submitBtn.textContent = 'Submit Enquiry';
                 submitBtn.disabled = false;
             });
